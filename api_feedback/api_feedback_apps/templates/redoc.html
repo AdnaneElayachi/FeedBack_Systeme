@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test API</h1>
+    <form id="apiTestForm">
+        <label for="endpoint">API Endpoint:</label>
+        <input type="text" id="endpoint" placeholder="e.g., http://127.0.0.1:8000/api/v1/feedbacks/" required>
+        
+        <label for="method">HTTP Method:</label>
+        <select id="method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+        </select>
+        
+        <label for="payload">Payload (for POST requests):</label>
+        <textarea id="payload" rows="5" placeholder='{"key": "value"}'></textarea>
+        
+        <button type="submit">Send Request</button>
+    </form>
+
+    <div id="response">
+        <h3>Response:</h3>
+        <pre id="responseContent"></pre>
+    </div>
+
+    <script>
+        document.getElementById("apiTestForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            
+            const endpoint = document.getElementById("endpoint").value;
+            const method = document.getElementById("method").value;
+            const payload = document.getElementById("payload").value;
+            const responseContent = document.getElementById("responseContent");
+            
+            responseContent.textContent = "Loading...";
+            
+            try {
+                const options = {
+                    method: method,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
+                
+                if (method === "POST" && payload) {
+                    options.body = payload;
+                }
+                
+                const response = await fetch(endpoint, options);
+                const data = await response.json();
+                responseContent.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                responseContent.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedbacks à valider</title>
+</head>
+<body>
+    <h1>Feedbacks à valider</h1>
+    <ul>
+        {% for feedback in feedbacks %}
+        <li>
+            {{ feedback.predicted_class }} - {{ feedback.suggested_class }}
+            <a href="{% url 'validate_feedback' feedback.id %}">Valider</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
