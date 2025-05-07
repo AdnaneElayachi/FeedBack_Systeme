@@ -20,8 +20,11 @@ hostname = socket.gethostname()
 local_ip = socket.gethostbyname(hostname)
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost', local_ip, '10.0.2.2','feedback-systeme.onrender.com']
+import os
 
-ALLOWED_HOSTS = ['feedback-systeme.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
+
+
 
 
 INSTALLED_APPS = [
