@@ -202,6 +202,7 @@
 import os
 from pathlib import Path
 from decouple import config
+from streamlit import feedback
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -218,7 +219,11 @@ import socket
 hostname = socket.gethostname()
 local_ip = socket.gethostbyname(hostname)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', local_ip, '10.0.2.2','feedback-systeme.onrender.com']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', local_ip, '10.0.2.2','feedback-systeme.onrender.com']
+
+ALLOWED_HOSTS = ['feedback-systeme.onrender.com', 'localhost', '127.0.0.1']
+
+
 
 INSTALLED_APPS = [
     'admin_interface',
