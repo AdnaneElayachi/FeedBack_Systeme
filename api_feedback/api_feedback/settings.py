@@ -21,8 +21,7 @@ local_ip = socket.gethostbyname(hostname)
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost', local_ip, '10.0.2.2','feedback-systeme.onrender.com']
 
-# ALLOWED_HOSTS = ['feedback-systeme.onrender.com', 'localhost', '127.0.0.1']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['feedback-systeme.onrender.com', 'localhost', '127.0.0.1']
 
 
 INSTALLED_APPS = [
@@ -52,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
+      'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 
@@ -102,7 +103,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -120,4 +123,4 @@ SWAGGER_USE_COMPAT_RENDERERS = False
 
 
 
-DEBUG = True  # Changez à False en production
+DEBUG = False  # Changez à False en production
