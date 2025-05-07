@@ -9,21 +9,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
 
-DEBUG = True  # Changez à False en production
+DEBUG = False  # Changez à False en production
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Ajoutez vos domaines en production
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
-
-import socket
 
 
-hostname = socket.gethostname()
-local_ip = socket.gethostbyname(hostname)
-
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', local_ip, '10.0.2.2','feedback-systeme.onrender.com']
+# settings.py
 import os
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
-
+ALLOWED_HOSTS = [
+    os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'localhost'), # Récupère automatiquement le nom d'hôte Render
+    '127.0.0.1',
+    '.onrender.com' # Autorise tous les sous-domaines Render
+]
 
 
 
@@ -108,6 +105,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 MEDIA_URL = '/media/'
@@ -126,4 +125,3 @@ SWAGGER_USE_COMPAT_RENDERERS = False
 
 
 
-DEBUG = False  # Changez à False en production

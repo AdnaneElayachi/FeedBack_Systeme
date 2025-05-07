@@ -1,8 +1,5 @@
-#!/usr/bin/env bash
-set -o errexit  # Arrêter le script en cas d'erreur
+set -o errexit
 
-# Collecte des fichiers statiques
+poetry install
 python manage.py collectstatic --noinput
-
-# Exécution des migrations
 python manage.py migrate
