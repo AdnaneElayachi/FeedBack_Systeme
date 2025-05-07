@@ -2,25 +2,23 @@
 import os
 from pathlib import Path
 from decouple import config
-from streamlit import feedback
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
 
-DEBUG = False  # Changez à False en production
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Ajoutez vos domaines en production
 
 
-# settings.py
-import os
-
 ALLOWED_HOSTS = [
-    os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'localhost'), # Récupère automatiquement le nom d'hôte Render
+    'localhost',
     '127.0.0.1',
-    '.onrender.com' # Autorise tous les sous-domaines Render
+    'feedback-systeme.onrender.com',
 ]
+
+
+DEBUG = False  # Changez à False en production
 
 
 
@@ -76,12 +74,47 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api_feedback.wsgi.application'
 
+
+
+
+
+
+
+
+
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# import dj_database_url
+# from decouple import config
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='DATABASE_URL=postgres://internal_db_4s4y_user:XCEPt1jj8aOGXbYIR0CRG8qjxnvZc5rK@dpg-d0dlc1juibrs73cu5n7g-a.oregon-postgres.render.com:5432/internal_db_4s4y',
+#         conn_max_age=600,
+#         ssl_require=True,
+#     )
+# }
+
+
+
+
+
+
+
+
+
+
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -117,7 +150,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOW_ALL_ORIGINS = True
-INSTALLED_APPS += ['corsheaders']
 
 MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE
 
