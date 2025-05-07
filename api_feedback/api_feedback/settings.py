@@ -201,6 +201,8 @@
 
 import os
 from pathlib import Path
+from decouple import config
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -208,7 +210,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'fallback-secret-key')
 
 DEBUG = True  # Changez à False en production
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Ajoutez vos domaines en production
-
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
 import socket
 
@@ -216,7 +218,7 @@ import socket
 hostname = socket.gethostname()
 local_ip = socket.gethostbyname(hostname)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', local_ip, '10.0.2.2']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', local_ip, '10.0.2.2','feedback-systeme.onrender.com']
 
 INSTALLED_APPS = [
     'admin_interface',
