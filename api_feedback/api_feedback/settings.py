@@ -199,7 +199,10 @@ django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est 
 
 ALLOWED_HOSTS = [
     'feedback-systeme.onrender.com',
-   '127.0.0.1'
+    'www.feedback-systeme.onrender.com',
+   '127.0.0.1',
+    'localhost',
+    '
 ]
 
 INSTALLED_APPS = [
