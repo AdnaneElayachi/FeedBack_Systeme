@@ -54,7 +54,7 @@ urlpatterns = [
 
 
 
-    
+     path('admin_tools/', include('admin_tools.urls')), 
     path("admin/", admin.site.urls),
     path("api/v1/", include("api_feedback_apps.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),

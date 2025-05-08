@@ -164,26 +164,45 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 
+ROOT_URLCONF = 'api_feedback.urls'
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+# DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'feedback-systeme.onrender.com',
-]
+
+# ALLOWED_HOSTS = [
+#     'localhost',
+#     '127.0.0.1',
+#     'feedback-systeme.onrender.com',
+# ]
+
+import os
+
+# Vérifier si la variable d'environnement est définie
+django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est la valeur par défaut
+
+if django_production == 'True':
+    ALLOWED_HOSTS = ['feedback-systeme.onrender.com']
+else:
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+# Debug: Afficher la valeur de ALLOWED_HOSTS
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+
 
 INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
 
      'admin_tools', 
+     'admin_tools.dashboard',
      'admin_tools.theming',
     'admin_tools.menu',
-    'admin_tools.dashboard',
+    
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -214,6 +233,8 @@ CORS_ALLOWED_ORIGINS = [
 
 
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',  # Ajoutez ceci
+
     'corsheaders.middleware.CorsMiddleware',  # doit être en premier
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -244,10 +265,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
-
-
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -289,4 +309,3 @@ TEMPLATES = [
 ]
 
 
-ROOT_URLCONF='api_feedback_apps.urls'
