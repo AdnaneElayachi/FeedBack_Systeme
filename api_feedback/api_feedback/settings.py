@@ -14,7 +14,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'feedback-systeme.onrender.com',
+    'https://feedback-systeme.onrender.com',
 ]
 
 
