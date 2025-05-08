@@ -185,14 +185,22 @@ import os
 # Vérifier si la variable d'environnement est définie
 django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est la valeur par défaut
 
-if django_production == 'True':
-    ALLOWED_HOSTS = ['feedback-systeme.onrender.com']
-else:
-    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-# Debug: Afficher la valeur de ALLOWED_HOSTS
-print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
 
+# if django_production == 'True':
+#     ALLOWED_HOSTS = ['feedback-systeme.onrender.com']
+# else:
+#     ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+# # Debug: Afficher la valeur de ALLOWED_HOSTS
+# print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+
+
+
+ALLOWED_HOSTS = [
+    'feedback-systeme.onrender.com',
+   '127.0.0.1'
+]
 
 INSTALLED_APPS = [
     'admin_interface',
