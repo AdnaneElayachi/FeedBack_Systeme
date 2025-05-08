@@ -170,8 +170,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
 
+
+import os
+
+# Vérifier si la variable d'environnement est définie
+django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est la valeur par défaut
+
+
+
+
 # DEBUG = config('DEBUG', default=False, cast=bool)
-DEBUG = True
 
 
 # ALLOWED_HOSTS = [
@@ -179,11 +187,6 @@ DEBUG = True
 #     '127.0.0.1',
 #     'feedback-systeme.onrender.com',
 # ]
-
-import os
-
-# Vérifier si la variable d'environnement est définie
-django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est la valeur par défaut
 
 
 
@@ -203,7 +206,15 @@ django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est 
 #    '127.0.0.1',
 #     'localhost',
 # ]
-ALLOWED_HOSTS = ['*']
+
+
+DEBUG = False
+
+ALLOWED_HOSTS = ['feedback-systeme.onrender.com',
+                 '.onrender.com',
+                 'localhost',
+                 '127.0.0.1',
+                         ]
 
 INSTALLED_APPS = [
     'admin_interface',
@@ -235,6 +246,7 @@ INSTALLED_APPS = [
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "https://feedback-systeme.onrender.com",
+     "https://www.feedback-systeme.onrender.com",
 ]
 
 
