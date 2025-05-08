@@ -13,3 +13,8 @@
 #     print("✅ Connexion réussie !")
 # except Exception as e:
 #     print(f"❌ Erreur : {e}")
+
+
+import os
+os.environ["ALLOWED_HOSTS"] = "feedback-systeme.onrender.com,www.feedback-systeme.onrender.com,127.0.0.1,localhost"
+print([host.strip() for host in os.environ.get("ALLOWED_HOSTS", "").split(",") if host.strip()])
