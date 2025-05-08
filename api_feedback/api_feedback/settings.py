@@ -210,13 +210,11 @@ django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est 
 
 DEBUG = False
 
-# ALLOWED_HOSTS = ['feedback-systeme.onrender.com',
-#                  '.onrender.com',
-#                  'localhost',
-#                  '127.0.0.1',
-#                          ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['feedback-systeme.onrender.com', 'localhost', '127.0.0.1']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 
 INSTALLED_APPS = [
