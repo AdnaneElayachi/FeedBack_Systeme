@@ -239,3 +239,10 @@ def receive_history(request):
         return Response({"message": "History received successfully", "history": serializer.data}, status=status.HTTP_201_CREATED)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+def check_host_view(request):
+    return HttpResponse(f"HTTP_HOST reçu : {request.get_host()}")
