@@ -51,8 +51,12 @@ DEBUG = False
 #     'localhost',
 # ]
 
+ALLOWED_HOSTS = [
+    'feedback-systeme.onrender.com',
+    
+]
 
-ALLOWED_HOSTS = ['*']
+
 
 
 print("🔍 DEBUG Render : ALLOWED_HOSTS =", ALLOWED_HOSTS)
