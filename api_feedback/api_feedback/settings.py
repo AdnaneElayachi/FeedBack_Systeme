@@ -22,17 +22,12 @@ django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est 
 # DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-# ALLOWED_HOSTS = [
-#     'localhost',
-#     '127.0.0.1',
-#     'feedback-systeme.onrender.com',
-# ]
-
-
-
 ALLOWED_HOSTS = [
-    '*',
+ 
+ 
+    'feedback-systeme.onrender.com',
 ]
+
 
 
 # if django_production == 'True':
