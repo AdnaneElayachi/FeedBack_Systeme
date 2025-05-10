@@ -24,9 +24,10 @@ django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est 
 
 ALLOWED_HOSTS = [
  
- 
+
     'feedback-systeme.onrender.com',
 ]
+print("🔍 DEBUG Render : ALLOWED_HOSTS =", ALLOWED_HOSTS)
 
 
 
