@@ -23,7 +23,8 @@ django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est 
 
 
 ALLOWED_HOSTS = [
- 
+ '127.0.0.1',
+    'localhost',
 
     'feedback-systeme.onrender.com',
 ]
