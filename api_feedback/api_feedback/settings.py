@@ -30,6 +30,11 @@ django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est 
 
 
 
+ALLOWED_HOSTS = [
+    '*',
+]
+
+
 # if django_production == 'True':
 #     ALLOWED_HOSTS = ['feedback-systeme.onrender.com']
 # else:
@@ -41,20 +46,14 @@ django_production = os.environ.get('DJANGO_PRODUCTION', 'False')  # 'False' est 
 
 
 
-DEBUG = False
+DEBUG = True
 
 
 # ALLOWED_HOSTS = [
-#     'feedback-systeme.onrender.com',
-#     'www.feedback-systeme.onrender.com',
+   
 #    '127.0.0.1',
 #     'localhost',
 # ]
-
-ALLOWED_HOSTS = [
-    'feedback-systeme.onrender.com',
-    
-]
 
 
 
